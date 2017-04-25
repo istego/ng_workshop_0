@@ -1,0 +1,8 @@
+<md-card [style.margin]="'10px'">
+  <img md-card-image [src]="item.image" *ngIf="item.image">
+  <md-card-title>{{item.name}}</md-card-title>
+  <md-card-subtitle>{{item.origin}}</md-card-subtitle>
+  <md-card-content>
+    {{item.description | words: 25}}
+  </md-card-content>
+</md-card>

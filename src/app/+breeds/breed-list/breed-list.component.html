@@ -1,0 +1,47 @@
+<md-toolbar>
+  <span fxFlex="90%" fxFlexOffset="5%">Breeds</span>
+  <md-toolbar-row>
+    <div fxFlex="90%" fxFlexOffset="5%">
+      <md-input-container>
+        <md-icon mdPrefix>search</md-icon>
+        <input mdInput placeholder="Search" type="search" [(ngModel)]="search">
+      </md-input-container>
+      <md-select placeholder="Size" [(ngModel)]="selectedSize" name="size">
+        <md-option *ngFor="let size of sizes" [value]="size">
+          {{size}}
+        </md-option>
+      </md-select>
+      <md-select placeholder="Coat" [(ngModel)]="selectedCoat" name="coat">
+        <md-option *ngFor="let coat of coats" [value]="coat">
+          {{coat}}
+        </md-option>
+      </md-select>
+      <md-select placeholder="Characteristics" [(ngModel)]="selectedTemperament" name="temperament">
+        <md-option *ngFor="let temperament of temperaments" [value]="temperament">
+          {{temperament}}
+        </md-option>
+      </md-select>
+      <md-select placeholder="Color" [(ngModel)]="selectedColor" name="color">
+        <md-option *ngFor="let color of colors" [value]="color">
+          <color *ngIf="color !== 'All'" [color]="color"></color>
+          {{color}}
+        </md-option>
+      </md-select>
+    </div>
+  </md-toolbar-row>
+</md-toolbar>
+<div
+  fxLayoutWrap
+  fxLayoutGap="0"
+  fxLayoutAlign="center start"
+  fxFlex="0 0 calc(90% - 20px)"
+  fxFlexOffset="5%"
+  *ngIf="items"
+>
+  <breed-item [item]="item" *ngFor="let item of items |
+    search: search |
+    filter: 'size' : selectedSize |
+    filter: 'coat' : selectedCoat |
+    filter: 'temperament' : selectedTemperament |
+    filter: 'colors' : selectedColor" fxFlex="25%"></breed-item>
+</div>
